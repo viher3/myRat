@@ -1,4 +1,4 @@
-package Network;
+package Network.Ip;
 
 public class PublicIpFinder implements IpFinder {
     @Override
