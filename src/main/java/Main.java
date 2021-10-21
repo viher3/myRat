@@ -1,8 +1,9 @@
 import UI.HomePanel;
+import Network.Ip.IpFinder;
 import UI.Tools.JFrameUtils;
+import Network.Ip.PublicIpFinder;
 
 import javax.swing.*;
-import java.util.HashMap;
 
 public class Main {
 
@@ -14,5 +15,14 @@ public class Main {
         frame = JFrameUtils.setCenteredPosition(frame);
         frame.pack();
         frame.setVisible(true);
+
+        Main main = new Main();
+        main.onInit();
+    }
+
+    protected void onInit()
+    {
+        IpFinder publicIpFinder = new PublicIpFinder();
+        System.out.println("My public IP is: " + publicIpFinder.find());
     }
 }
