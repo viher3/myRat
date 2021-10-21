@@ -1,7 +1,8 @@
 import UI.HomePanel;
+import UI.Tools.JFrameUtils;
 
 import javax.swing.*;
-import java.awt.*;
+import java.util.HashMap;
 
 public class Main {
 
@@ -10,17 +11,7 @@ public class Main {
         frame.setContentPane(new HomePanel().window);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(400, 600);
-
-        //Get the screen size
-        Toolkit toolkit = Toolkit.getDefaultToolkit();
-        Dimension screenSize = toolkit.getScreenSize();
-
-        //Calculate the frame location
-        int x = (screenSize.width - frame.getWidth()) / 2;
-        int y = (screenSize.height - frame.getHeight()) / 2;
-
-        //Set the new frame location
-        frame.setLocation(x, y);
+        frame = JFrameUtils.setCenteredPosition(frame);
         frame.pack();
         frame.setVisible(true);
     }
