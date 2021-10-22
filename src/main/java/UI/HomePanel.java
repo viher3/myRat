@@ -15,6 +15,6 @@ public class HomePanel {
 
     public void appendLogText(String text)
     {
-        this.logTextarea.append(text);
+        this.logTextarea.append(text + "\n");
     }
 }

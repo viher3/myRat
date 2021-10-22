@@ -23,6 +23,7 @@ public class Home {
         frame.setVisible(true);
 
         this.panel.appendLogText("Getting device IPs ...");
+        this.getIpAddresses();
     }
 
     private void getIpAddresses()
@@ -34,8 +35,8 @@ public class Home {
             String publicIp = publicIpFinder.find();
             String privateIp = privateIpFinder.find();
 
-            System.out.println("My public IP is: " + publicIp);
-            System.out.println("My private IP is: " + privateIp);
+            this.panel.appendLogText("Private IP: " + privateIp);
+            this.panel.appendLogText("Public IP: " + publicIp);
         } catch (IOException e) {
             e.printStackTrace();
         }
