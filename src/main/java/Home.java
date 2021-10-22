@@ -37,6 +37,7 @@ public class Home {
 
             this.panel.appendLogText("Private IP: " + privateIp);
             this.panel.appendLogText("Public IP: " + publicIp);
+            this.panel.setIpAddresses(publicIp, privateIp);
         } catch (IOException e) {
             e.printStackTrace();
         }

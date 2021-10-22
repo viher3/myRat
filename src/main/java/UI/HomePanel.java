@@ -17,4 +17,9 @@ public class HomePanel {
     {
         this.logTextarea.append(text + "\n");
     }
+
+    public void setIpAddresses(String pub, String priv)
+    {
+        this.ipAddresses.setText("Private IP: " + priv + " | Public IP: " + pub);
+    }
 }
