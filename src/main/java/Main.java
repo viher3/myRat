@@ -1,3 +1,4 @@
+import Network.Ip.PrivateIpFinder;
 import UI.HomePanel;
 import Network.Ip.IpFinder;
 import UI.Tools.JFrameUtils;
@@ -25,7 +26,13 @@ public class Main {
     {
         try {
             IpFinder publicIpFinder = new PublicIpFinder();
-            System.out.println("My public IP is: " + publicIpFinder.find());
+            IpFinder privateIpFinder = new PrivateIpFinder();
+
+            String publicIp = publicIpFinder.find();
+            String privateIp = privateIpFinder.find();
+
+            System.out.println("My public IP is: " + publicIp);
+            System.out.println("My private IP is: " + privateIp);
         } catch (IOException e) {
             e.printStackTrace();
         }
