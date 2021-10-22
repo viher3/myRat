@@ -4,6 +4,7 @@ import UI.Tools.JFrameUtils;
 import Network.Ip.PublicIpFinder;
 
 import javax.swing.*;
+import java.io.IOException;
 
 public class Main {
 
@@ -22,7 +23,11 @@ public class Main {
 
     protected void onInit()
     {
-        IpFinder publicIpFinder = new PublicIpFinder();
-        System.out.println("My public IP is: " + publicIpFinder.find());
+        try {
+            IpFinder publicIpFinder = new PublicIpFinder();
+            System.out.println("My public IP is: " + publicIpFinder.find());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
