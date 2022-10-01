@@ -3,9 +3,6 @@ import Network.Ip.IpFinder;
 import java.io.IOException;
 import Network.Ip.PublicIpFinder;
 import Network.Ip.PrivateIpFinder;
-import UI.Tools.JFrameUtils;
-
-import javax.swing.*;
 
 public class Home {
 
@@ -14,13 +11,7 @@ public class Home {
     public void init()
     {
         this.panel = new HomePanel();
-        JFrame frame = new JFrame("myRat");
-        frame.setContentPane(this.panel.window);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(400, 600);
-        frame = JFrameUtils.setCenteredPosition(frame);
-        frame.pack();
-        frame.setVisible(true);
+        this.panel.open();
 
         this.panel.appendLogText("Getting device IPs ...");
         this.getIpAddresses();
