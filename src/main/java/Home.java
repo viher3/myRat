@@ -15,6 +15,7 @@ public class Home {
 
         this.panel.appendLogText("Getting device IPs ...");
         this.getIpAddresses();
+        this.panel.appendLogText("Sending signal to main server ...");
     }
 
     private void getIpAddresses()
