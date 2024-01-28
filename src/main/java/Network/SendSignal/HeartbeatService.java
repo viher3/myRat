@@ -1,6 +1,6 @@
 package Network.SendSignal;
 
-public class SendSignalService {
+public class HeartbeatService {
 
 
 
