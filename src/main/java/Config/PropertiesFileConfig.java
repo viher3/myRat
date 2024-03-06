@@ -7,15 +7,15 @@ import java.util.Properties;
 /**
  * @doc https://niruhan.medium.com/how-to-add-a-config-file-to-a-java-project-99fd9b6cebca
  */
-public class ConfigReader {
+public class PropertiesFileConfig {
 
     final String file = "config.properties";
 
     Properties config = new Properties();
 
-    private static ConfigReader instance;
+    private static PropertiesFileConfig instance;
 
-    private ConfigReader() {
+    private PropertiesFileConfig() {
         try (FileInputStream configInput = new FileInputStream(file)) {
             config.load(configInput);
         }catch (Exception e){
@@ -23,9 +23,9 @@ public class ConfigReader {
         }
     }
 
-    public static ConfigReader getInstance() throws IOException {
+    public static PropertiesFileConfig getInstance() throws IOException {
         if (instance == null) {
-            instance = new ConfigReader();
+            instance = new PropertiesFileConfig();
         }
 
         return instance;

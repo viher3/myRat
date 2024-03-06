@@ -2,13 +2,12 @@ package Application.Setup;
 
 import Application.Client.ClientFacade;
 import Application.Server.ServerFacade;
-import Config.ConfigReader;
+import Config.PropertiesFileConfig;
 import Config.ConfigValue;
 import Config.InMemoryConfig;
 import Network.Ip.IpFinder;
 import Network.Ip.PrivateIpFinder;
 import Network.Ip.PublicIpFinder;
-import Network.Socket.ClientService;
 import UI.HomePanel;
 
 import java.io.IOException;
@@ -16,12 +15,12 @@ import java.io.IOException;
 public class SetupFacade {
 
     private final HomePanel homePanel;
-    private ConfigReader config;
+    private PropertiesFileConfig config;
 
     private final InMemoryConfig inMemoryConfig;
 
     public SetupFacade(HomePanel homePanel) throws IOException {
-        this.config = ConfigReader.getInstance();
+        this.config = PropertiesFileConfig.getInstance();
         this.homePanel = homePanel;
         this.inMemoryConfig = InMemoryConfig.getInstance();
     }
