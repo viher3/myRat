@@ -1,5 +1,7 @@
 package Application.Setup;
 
+import Application.Client.ClientFacade;
+import Application.Server.ServerFacade;
 import Config.ConfigReader;
 import Config.ConfigValue;
 import Network.Ip.IpFinder;
@@ -20,21 +22,26 @@ public class SetupFacade {
         this.homePanel = homePanel;
     }
 
-    public void execute(){
+    public void execute() throws IOException {
         this.homePanel.appendLogText("Client version " . concat(config.get(ConfigValue.APP_VERSION.getValue())));
         this.getIpAddresses();
         this.checkAppMode();
         //this.homePanel.appendLogText("Sending signal to main server ...");
     }
 
-    private void checkAppMode()
-    {
+    private void checkAppMode() throws IOException {
         String appMode = this.config.get("APP_MODE").toUpperCase();
 
         if(appMode.equals("CLIENT")){
             this.homePanel.appendLogText("App mode: CLIENT");
+
+            ClientFacade clientFacade = new ClientFacade();
+            clientFacade.execute();
         }else if(appMode.equals("SERVER")){
             this.homePanel.appendLogText("App mode: SERVER");
+
+            ServerFacade serverFacade = new ServerFacade();
+            serverFacade.execute();
         }
     }
 

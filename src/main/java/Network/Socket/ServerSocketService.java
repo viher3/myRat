@@ -19,7 +19,7 @@ public class ServerSocketService {
         this.port = 8080;
     }
 
-    public void run(String[] args) {
+    public void run() {
 
         try (ServerSocket serverSocket = new ServerSocket(this.port)) {
             System.out.println("Server is listening on port " + this.port);
@@ -43,18 +43,27 @@ public class ServerSocketService {
             String inputLine;
             while ((inputLine = reader.readLine()) != null) {
                 System.out.println("Received from client: " + inputLine);
+
+                // Server sends response to the client
                 writer.println("Server echoes: " + inputLine);
+
+                if(inputLine.equals("test-cmd")){
+                    System.out.println("Server handler => test-cmd");
+                }
+
             }
 
         } catch (IOException e) {
             e.printStackTrace();
-        } finally {
-            try {
-                clientSocket.close();
-                System.out.println("Client disconnected: " + clientSocket);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        }
+    }
+
+    private void disconnectClient(Socket clientSocket){
+        try {
+            clientSocket.close();
+            System.out.println("Client disconnected: " + clientSocket);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

@@ -24,7 +24,7 @@ public class ClientService {
         this.serverPort = serverPort;
     }
 
-    public void run(String[] args) {
+    public void run() {
         try (Socket socket = new Socket(this.serverAddress, this.serverPort);
              BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
              PrintWriter writer = new PrintWriter(socket.getOutputStream(), true)) {
@@ -33,6 +33,7 @@ public class ClientService {
 
             // Send a message to the server
             writer.println("Hello, Server!");
+            writer.println("test-cmd");
 
             // Receive and print the response from the server
             String response = reader.readLine();
