@@ -1,26 +1,26 @@
 package Application.Server;
 
 import Config.ConfigReader;
+import Config.ConfigValue;
+import Config.InMemoryConfig;
 import Network.Socket.ServerSocketService;
 
 import java.io.IOException;
 
 public class ServerFacade {
 
-    private ConfigReader config;
+    private InMemoryConfig config;
 
-    private final ServerSocketService serverSocketService;
+    private ServerSocketService serverSocketService;
 
     public ServerFacade() throws IOException {
-        this.config = ConfigReader.getInstance();
-        int port = Integer.parseInt(this.config.get("SERVER_PORT"));
-
-        this.serverSocketService = new ServerSocketService(port);
+        this.config = InMemoryConfig.getInstance();
     }
 
     public void execute() {
-
+        // Run server
+        int port = Integer.parseInt(this.config.get(ConfigValue.SERVER_PORT.getValue()));
+        this.serverSocketService = new ServerSocketService(port);
         this.serverSocketService.run();
-
     }
 }

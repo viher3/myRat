@@ -25,6 +25,8 @@ public class ClientService {
     }
 
     public void run() {
+        System.out.println("Connecting to ".concat(this.serverAddress).concat(":").concat(String.valueOf(this.serverPort)));
+
         try (Socket socket = new Socket(this.serverAddress, this.serverPort);
              BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
              PrintWriter writer = new PrintWriter(socket.getOutputStream(), true)) {
