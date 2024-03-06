@@ -2,7 +2,7 @@ package Application.Server;
 
 import Config.ConfigValue;
 import Config.InMemoryConfig;
-import Network.Socket.ServerSocketService;
+import Network.Socket.ServerService;
 
 import java.io.IOException;
 
@@ -10,7 +10,7 @@ public class ServerFacade {
 
     private InMemoryConfig config;
 
-    private ServerSocketService serverSocketService;
+    private ServerService serverSocketService;
 
     public ServerFacade() throws IOException {
         this.config = InMemoryConfig.getInstance();
@@ -19,7 +19,7 @@ public class ServerFacade {
     public void execute() {
         // Run server
         int port = Integer.parseInt(this.config.get(ConfigValue.SERVER_PORT.getValue()));
-        this.serverSocketService = new ServerSocketService(port);
+        this.serverSocketService = new ServerService(port);
         this.serverSocketService.run();
     }
 }

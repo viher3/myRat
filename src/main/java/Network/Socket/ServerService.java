@@ -7,15 +7,15 @@ import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-public class ServerSocketService {
+public class ServerService {
 
     private int port;
 
-    public ServerSocketService(int port) {
+    public ServerService(int port) {
         this.port = port;
     }
 
-    public ServerSocketService() {
+    public ServerService() {
         this.port = 8080;
     }
 
