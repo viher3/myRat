@@ -2,12 +2,15 @@ package UI;
 
 import UI.Tools.JFrameUtils;
 import javax.swing.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 public class HomePanel {
     public JPanel window;
     private JTabbedPane tabbedPane1;
     private JTextArea logTextarea;
     private JLabel ipAddresses;
+    private JTextPane commandTextPane;
 
     private void createUIComponents() { }
 
@@ -19,6 +22,23 @@ public class HomePanel {
         frame = JFrameUtils.setCenteredPosition(frame);
         frame.pack();
         frame.setVisible(true);
+
+        commandTextPane.setText("Enter your command here ...");
+        commandTextPane.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {}
+
+            @Override
+            public void keyPressed(KeyEvent e) {}
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                if(e.getKeyChar() == KeyEvent.VK_ENTER){
+                    System.out.println("HIZO ENTER!!");
+                }
+            }
+        });
+
     }
 
     public void appendLogText(String text) {
