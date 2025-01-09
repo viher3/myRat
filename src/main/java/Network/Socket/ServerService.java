@@ -1,5 +1,7 @@
 package Network.Socket;
 
+import Network.Socket.Exception.ServerConnectionException;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -19,7 +21,7 @@ public class ServerService {
         this.port = 8080;
     }
 
-    public void run() {
+    public void run() throws ServerConnectionException {
 
         try (ServerSocket serverSocket = new ServerSocket(this.port)) {
             System.out.println("Server is listening on port " + this.port);
@@ -28,15 +30,21 @@ public class ServerService {
                 Socket clientSocket = serverSocket.accept();
                 System.out.println("Client connected: " + clientSocket);
 
-                new Thread(() -> handleClient(clientSocket)).start();
+                new Thread(() -> {
+                    try {
+                        handleClient(clientSocket);
+                    } catch (ServerConnectionException e) {
+                        e.printStackTrace();
+                    }
+                }).start();
             }
 
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new ServerConnectionException(e.getMessage());
         }
     }
 
-    private static void handleClient(Socket clientSocket) {
+    private static void handleClient(Socket clientSocket) throws ServerConnectionException {
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
              PrintWriter writer = new PrintWriter(clientSocket.getOutputStream(), true)) {
 
@@ -54,16 +62,16 @@ public class ServerService {
             }
 
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new ServerConnectionException(e.getMessage());
         }
     }
 
-    private void disconnectClient(Socket clientSocket){
+    private void disconnectClient(Socket clientSocket) throws ServerConnectionException {
         try {
             clientSocket.close();
             System.out.println("Client disconnected: " + clientSocket);
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new ServerConnectionException(e.getMessage());
         }
     }
 

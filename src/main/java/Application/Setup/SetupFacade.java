@@ -84,7 +84,11 @@ public class SetupFacade {
             this.homePanel.appendLogText("Public IP: " + publicIp);
             this.homePanel.setIpAddresses(publicIp, privateIp);
         } catch (IOException e) {
-            e.printStackTrace();
+            this.homePanel.appendLogText("");
+            this.homePanel.appendLogText("##########");
+            this.homePanel.appendLogText("Exception: " + e.getMessage());
+            this.homePanel.appendLogText("##########");
+            this.homePanel.appendLogText("");
         }
     }
 }
