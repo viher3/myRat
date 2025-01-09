@@ -19,7 +19,7 @@ public class HomePanel {
         frame.setContentPane(this.window);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(400, 600);
-        frame = JFrameUtils.setCenteredPosition(frame);
+        JFrameUtils.setCenteredPosition(frame);
         frame.pack();
         frame.setVisible(true);
 
