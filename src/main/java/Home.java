@@ -1,4 +1,5 @@
 import Application.Setup.SetupFacade;
+import Network.Socket.Exception.ClientConnectionException;
 import UI.HomePanel;
 import java.io.IOException;
 

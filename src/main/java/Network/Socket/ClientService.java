@@ -1,5 +1,7 @@
 package Network.Socket;
 
+import Network.Socket.Exception.ClientConnectionException;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -24,7 +26,7 @@ public class ClientService {
         this.serverPort = serverPort;
     }
 
-    public void run() {
+    public void run() throws ClientConnectionException {
         System.out.println("Connecting to ".concat(this.serverAddress).concat(":").concat(String.valueOf(this.serverPort)));
 
         try (Socket socket = new Socket(this.serverAddress, this.serverPort);
@@ -42,7 +44,7 @@ public class ClientService {
             System.out.println("Server response: " + response);
 
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new ClientConnectionException(e.getMessage());
         }
     }
 

@@ -45,16 +45,25 @@ public class SetupFacade {
     private void checkAppMode() throws IOException {
         String appMode = this.inMemoryConfig.get(ConfigValue.APP_MODE.getValue());
 
-        if(appMode.equals(ConfigValue.APP_MODE_CLIENT.getValue())){
-            this.homePanel.appendLogText("App mode: CLIENT");
 
-            ClientFacade clientFacade = new ClientFacade();
-            clientFacade.execute();
-        }else if(appMode.equals(ConfigValue.APP_MODE_SERVER.getValue())){
-            this.homePanel.appendLogText("App mode: SERVER");
+        try{
+            if(appMode.equals(ConfigValue.APP_MODE_CLIENT.getValue())){
+                this.homePanel.appendLogText("App mode: CLIENT");
 
-            ServerFacade serverFacade = new ServerFacade();
-            serverFacade.execute();
+                ClientFacade clientFacade = new ClientFacade();
+                clientFacade.execute();
+            }else if(appMode.equals(ConfigValue.APP_MODE_SERVER.getValue())){
+                this.homePanel.appendLogText("App mode: SERVER");
+
+                ServerFacade serverFacade = new ServerFacade();
+                serverFacade.execute();
+            }
+        } catch (IOException e) {
+            this.homePanel.appendLogText("");
+            this.homePanel.appendLogText("##########");
+            this.homePanel.appendLogText("Exception: " + e.getMessage());
+            this.homePanel.appendLogText("##########");
+            this.homePanel.appendLogText("");
         }
     }
 
